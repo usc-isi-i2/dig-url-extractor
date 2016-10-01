@@ -18,7 +18,7 @@ class TestURLExtractorMethods(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_phone_extractor(self):
+    def test_url_extractor(self):
         doc = {'content': 'hello xixi https://www.todomasajes.net/b_k/flor/bk00.htm world', 'b': 'world'}
 
         extractor = URLExtractor().set_metadata({'extractor': 'url'})

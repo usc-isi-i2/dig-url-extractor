@@ -1,6 +1,6 @@
 Babel==2.3.4
 decorator==4.0.10
-digExtractor==0.1.8
+digExtractor>=0.1.8
 esmre==0.3.1
 idna==2.1
 jsonpath-rw==1.4.0
