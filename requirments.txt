@@ -1,0 +1,15 @@
+Babel==2.3.4
+decorator==4.0.10
+digExtractor==0.1.8
+esmre==0.3.1
+idna==2.1
+jsonpath-rw==1.4.0
+jsonpath-rw-ext==1.0.0
+pbr==1.10.0
+ply==3.9
+pytz==2016.6.1
+requests==2.11.1
+requests-file==1.4
+six==1.10.0
+tldextract==2.0.1
+wsgiref==0.1.2
