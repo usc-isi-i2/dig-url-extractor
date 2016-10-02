@@ -2,7 +2,7 @@
 # @Author: ZwEin
 # @Date:   2016-07-26 13:48:04
 # @Last Modified by:   ZwEin
-# @Last Modified time: 2016-09-30 23:23:45
+# @Last Modified time: 2016-10-02 15:05:12
 
 """
 Inspired by imranghory's urlextractor at https://github.com/imranghory/urlextractor
@@ -103,7 +103,3 @@ class ZEURLExtractor(object):
         text= ZEURLExtractor.preprocess(text)
         ans = ZEURLExtractor.query(text)
         return ans
-
-if __name__ == '__main__':
-    text = 'hello xixi https://www.todomasajes.net/b_k/flor/bk00.htm world'
-    print ZEURLExtractor.extract(text)
