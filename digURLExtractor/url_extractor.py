@@ -2,7 +2,7 @@
 # @Author: ZwEin
 # @Date:   2016-09-30 22:33:42
 # @Last Modified by:   ZwEin
-# @Last Modified time: 2016-10-02 15:18:22
+# @Last Modified time: 2016-10-02 15:41:50
 
 
 import copy 
@@ -19,6 +19,7 @@ class URLExtractor(Extractor):
     def extract(self, doc):
         if 'text' in doc:
             return ZEURLExtractor.extract(doc['text'])
+        return None
 
     def get_metadata(self):
         return copy.copy(self.metadata)
