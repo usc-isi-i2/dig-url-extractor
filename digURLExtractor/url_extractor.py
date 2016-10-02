@@ -2,7 +2,7 @@
 # @Author: ZwEin
 # @Date:   2016-09-30 22:33:42
 # @Last Modified by:   ZwEin
-# @Last Modified time: 2016-10-02 15:05:29
+# @Last Modified time: 2016-10-02 15:18:22
 
 
 import copy 
@@ -17,7 +17,8 @@ class URLExtractor(Extractor):
         self.renamed_input_fields = ['text']
 
     def extract(self, doc):
-        return ZEURLExtractor.extract(doc['text'])
+        if 'text' in doc:
+            return ZEURLExtractor.extract(doc['text'])
 
     def get_metadata(self):
         return copy.copy(self.metadata)
