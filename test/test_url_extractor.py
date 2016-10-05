@@ -24,7 +24,7 @@ class TestURLExtractorMethods(unittest.TestCase):
         extractor = URLExtractor().set_metadata({'extractor': 'url'})
         extractor_processor = ExtractorProcessor().set_input_fields(['content']).set_output_field('extracted').set_extractor(extractor)
         updated_doc = extractor_processor.extract(doc)
-        self.assertEqual(updated_doc['extracted']['value'], ['www.todomasajes.net/b_k/flor/bk00.htm'])
+        self.assertEqual(updated_doc['extracted'][0]['value'], ['www.todomasajes.net/b_k/flor/bk00.htm'])
 
     
 
