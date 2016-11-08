@@ -5,8 +5,7 @@
 # @Last Modified time: 2016-10-02 15:41:50
 
 
-import copy 
-import types
+import copy
 from digExtractor.extractor import Extractor
 from ze_url_extractor import ZEURLExtractor
 
@@ -18,7 +17,8 @@ class URLExtractor(Extractor):
 
     def extract(self, doc):
         if 'text' in doc:
-            return ZEURLExtractor.extract(doc['text'])
+            return ZEURLExtractor.extract(doc['text'],
+                                          self.get_include_context())
         return None
 
     def get_metadata(self):
@@ -30,4 +30,3 @@ class URLExtractor(Extractor):
 
     def get_renamed_input_fields(self):
         return self.renamed_input_fields
-

@@ -10,16 +10,15 @@ Inspired by imranghory's urlextractor at https://github.com/imranghory/urlextrac
 """
 
 import re
-import os
-import sys
 
 # Regular expression accelerator
-# Modules used to accelerate execution of a large collection of regular expressions using the Aho-Corasick algorithms.
+# Modules used to accelerate execution of a large collection of regular
+# expressions using the Aho-Corasick algorithms.
 import esm
 
 # Internationalized Domain Names in Applications (IDNA)
 # https://pypi.python.org/pypi/idna
-import idna 
+import idna
 
 # Accurately separate the TLD from the registered domain and subdomains of a URL, using the Public Suffix List.
 # https://github.com/john-kurkowski/tldextract
@@ -40,12 +39,13 @@ re_dot = re.compile(r'(?:\s+?dot\s+?)', re.IGNORECASE)
 reg_url_charactor = '[a-z0-9-.]'
 
 re_url_charactor = re.compile(reg_url_charactor, re.IGNORECASE)
-re_pretld = re.compile(reg_url_charactor+'+?$', re.IGNORECASE)
+re_pretld = re.compile(reg_url_charactor + '+?$', re.IGNORECASE)
 re_posttld = re.compile(':?[0-9]*[/[!#$&-;=?a-z_]+]?', re.IGNORECASE)
 
 ######################################################################
 #   Main Scripts
 ######################################################################
+
 
 class ZEURLExtractor(object):
 
@@ -57,7 +57,7 @@ class ZEURLExtractor(object):
             tldindex.enter('.' + tld.encode('idna'))
         tldindex.fix()
         return tldindex
-    
+
     tldindex = __init_tld_index()
 
     @staticmethod
@@ -71,7 +71,7 @@ class ZEURLExtractor(object):
         return text
 
     @staticmethod
-    def query(text):
+    def query(text, include_context=False):
         ans = []
         exts = ZEURLExtractor.tldindex.query(text)
         for ext in exts:
@@ -90,16 +90,27 @@ class ZEURLExtractor(object):
                 startpt -= len(pretld.group(0))
             url += tld
             if posttld:
-                url += posttld.group(0)     
+                url += posttld.group(0)
                 endpt += len(posttld.group(0))
-            url = url.rstrip(',.') 
-            ans.append(url)
-        ans = list(set([_ for _ in ans if _]))
+            url = url.rstrip(',.')
+            result = url
+            if include_context:
+                # TODO create context using extractor method
+                result = {'value': result,
+                          'context': {
+                              'start': pretld.start(0),
+                              'end': posttld.start(0) + endpt,
+                              'field': 'text'}
+                          }
+
+            ans.append(result)
+        if not include_context:
+            ans = list(set([_ for _ in ans if _]))
         return ans
 
     @staticmethod
-    def extract(text):
+    def extract(text, include_context=False):
         text = text.encode('ascii', 'ignore')
-        text= ZEURLExtractor.preprocess(text)
-        ans = ZEURLExtractor.query(text)
+        text = ZEURLExtractor.preprocess(text)
+        ans = ZEURLExtractor.query(text, include_context)
         return ans

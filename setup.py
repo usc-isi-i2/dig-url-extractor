@@ -6,18 +6,17 @@
 
 
 from distutils.core import setup
-from setuptools import Extension,find_packages
-from os import path
+from setuptools import find_packages
 
 setup(
-    name = 'digURLExtractor',
-    version = '0.2.0',
-    description = 'digURLExtractor',
-    author = 'Lingzhe Teng',
-    author_email = 'zwein27@gmail.com',
-    url = 'https://github.com/usc-isi-i2/dig-url-extractor',
-    download_url = 'https://github.com/usc-isi-i2/dig-url-extractor',
-    packages = find_packages(),
-    keywords = ['url', 'extractor'],
+    name='digURLExtractor',
+    version='0.3.0',
+    description='digURLExtractor',
+    author='Lingzhe Teng',
+    author_email='zwein27@gmail.com',
+    url='https://github.com/usc-isi-i2/dig-url-extractor',
+    download_url='https://github.com/usc-isi-i2/dig-url-extractor',
+    packages=find_packages(),
+    keywords=['url', 'extractor'],
     install_requires=['digExtractor', 'esmre', 'idna', 'tldextract']
 )
