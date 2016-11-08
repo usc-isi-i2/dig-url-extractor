@@ -14,11 +14,12 @@ class URLExtractor(Extractor):
 
     def __init__(self):
         self.renamed_input_fields = ['text']
+        self.zeurl = ZEURLExtractor()
 
     def extract(self, doc):
         if 'text' in doc:
-            return ZEURLExtractor.extract(doc['text'],
-                                          self.get_include_context())
+            return self.zeurl.extract(doc['text'],
+                                      self.get_include_context())
         return None
 
     def get_metadata(self):
